@@ -7,17 +7,16 @@
         <strong>{{movie.name}}</strong>, <i>{{movie.director}}</i> [{{movie.year}}]
         <router-link :to="{ name: 'show', params: { id: movie.id }}">더보기</router-link>
       </div>
-    </div> -->
-
+  </div>-->
   <div id="timeline">
     <ul id="datas">
       <li v-for="(value, key, index) in dates" :key="index">
-        <a href="#{{chrono.year}}">{{chrono.year}}</a>
+        <a :href="'#'+chrono.year">{{chrono.year}}</a>
       </li>
     </ul>
     <ul id="datas">>
-      <li v-for="(value, key, index) in dates" :key="index" id="{{chrono.year}}">
-        <img src="images/{{chrono.images}}.png" width="256" height="256" />
+      <li v-for="(chrono, key, index) in dates" :key="index" v-bind:id="chrono.year">
+        <img :src="'images/'+chrono.images+'.png'" width="256" height="256">
         <h1>{{chrono.year}}</h1>
         <h2>{{chrono.title}}</h2>
         <p>{{chrono.text}}</p>
@@ -28,18 +27,19 @@
 
 <script>
 export default {
-  created() {
-    this.$http.get("/chrono").then(response => {
-      this.movies = response.data;
-    });
+  created () {
+    this.$http.get('/chrono').then(response => {
+      this.datas = response.data
+    })
   },
-  name: "hello",
-  data() {
+  name: 'chronology',
+  data () {
     return {
       dates: []
-    };
+    }
   }
-};
+}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

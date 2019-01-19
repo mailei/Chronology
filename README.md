@@ -15,6 +15,7 @@ npm i
 start server
 ```
 cd ../
+npm install
 npm start
 
 
